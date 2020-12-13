@@ -7,24 +7,24 @@ package models;
 
 /**
  *
- * @author hoang
+
  */
 public class DongPhiVSModel {
     
     private String tenChuHo;
-    private int ID_HK;
-    private int nam;
-    private int tien_Q1;
-    private int tien_Q2;
-    private int tien_Q3;
-    private int tien_Q4;
+    private Integer iD_HK;
+    private Integer nam;
+    private Integer tien_Q1 = 0;
+    private Integer tien_Q2 = 0;
+    private Integer tien_Q3 = 0;
+    private Integer tien_Q4 = 0;
 
     public void setTenChuHo(String tenChuHo) {
         this.tenChuHo = tenChuHo;
     }
 
     public void setID_HK(int ID_HK) {
-        this.ID_HK = ID_HK;
+        this.iD_HK = ID_HK;
     }
 
     public void setNam(int nam) {
@@ -51,27 +51,27 @@ public class DongPhiVSModel {
         return tenChuHo;
     }
 
-    public int getID_HK() {
-        return ID_HK;
+    public Integer getID_HK() {
+        return iD_HK;
     }
 
-    public int getNam() {
+    public Integer getNam() {
         return nam;
     }
 
-    public int getTien_Q1() {
+    public Integer getTien_Q1() {
         return tien_Q1;
     }
 
-    public int getTien_Q2() {
+    public Integer getTien_Q2() {
         return tien_Q2;
     }
 
-    public int getTien_Q3() {
+    public Integer getTien_Q3() {
         return tien_Q3;
     }
 
-    public int getTien_Q4() {
+    public Integer getTien_Q4() {
         return tien_Q4;
     }
 
