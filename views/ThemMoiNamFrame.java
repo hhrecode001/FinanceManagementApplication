@@ -13,7 +13,6 @@ import services.DongPhiVSService;
 
 /**
  *
- * @author hoang
  */
 public class ThemMoiNamFrame extends javax.swing.JFrame {
 
@@ -112,8 +111,7 @@ public class ThemMoiNamFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controller.themMoiNam(jTextField1.getText());
-        controller.updateListDongPhiVS();
+        controller.addNamModel(jTextField1.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
