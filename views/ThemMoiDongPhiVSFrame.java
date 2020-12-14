@@ -11,10 +11,11 @@ import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import models.DongPhiVSModel;
 import services.DongPhiVSService;
 /**
  *
- * @author hoang
+ * 
  */
 public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
 
@@ -30,7 +31,6 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
         this.controller = controller;
         controller.getListNam(jComboBox1);
         jTextField1.setText("");
-        jTextField2.setText("");
         jTextField3.setText("");
         this.parentJFrame = parentJFrame;
         this.parentJFrame.setEnabled(false);
@@ -57,7 +57,6 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -65,6 +64,7 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,8 +75,6 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-
-        jTextField2.setText("jTextField2");
 
         jTextField3.setText("jTextField3");
 
@@ -97,6 +95,9 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Ghi nhận đóng phí vệ sinh");
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        jComboBox2.setSelectedIndex(-1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,9 +113,9 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                    .addComponent(jLabel3))
-                .addGap(40, 40, 40)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
@@ -144,8 +145,8 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -155,15 +156,26 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if (this.jTextField1.getText().trim().isEmpty() 
-                || this.jTextField2.getText().trim().isEmpty()
-                || this.jTextField3.getText().trim().isEmpty()
-                || this.nam == null){
-            JOptionPane.showMessageDialog(null, "Vui long dien day du thong tin", "Warning", JOptionPane.ERROR_MESSAGE);
-        } else {    
-        controller.themMoiDongPhiVS(jTextField1.getText(),this.nam,jTextField2.getText(),jTextField3.getText());
-        this.controller.updateListDongPhiVS();
-    }
+        if (this.jTextField1.getText().trim().isEmpty() 
+                    || this.jComboBox2.getSelectedIndex() == -1
+                    || this.jTextField3.getText().trim().isEmpty()
+                    || this.nam == null){
+                JOptionPane.showMessageDialog(null, "Vui long dien day du thong tin", "Warning", JOptionPane.ERROR_MESSAGE);
+            } 
+        else {    
+                DongPhiVSModel dongPhiVS = new DongPhiVSModel();
+                try{
+                dongPhiVS.setID_HK(Integer.parseInt(jTextField1.getText()));
+                dongPhiVS.setNam(Integer.parseInt((String)jComboBox1.getSelectedItem()));
+                if (jComboBox2.getSelectedItem().equals("1")) dongPhiVS.setTien_Q1(Integer.parseInt(jTextField3.getText()));
+                if (jComboBox2.getSelectedItem().equals("2")) dongPhiVS.setTien_Q2(Integer.parseInt(jTextField3.getText()));
+                if (jComboBox2.getSelectedItem().equals("3")) dongPhiVS.setTien_Q3(Integer.parseInt(jTextField3.getText()));
+                if (jComboBox2.getSelectedItem().equals("4")) dongPhiVS.setTien_Q4(Integer.parseInt(jTextField3.getText()));
+                controller.themMoiDongPhiVSModel(dongPhiVS,(String)jComboBox2.getSelectedItem());
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null,"ID hộ khẩu hoặc số tiền không hợp lệ!");   
+                }
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -178,13 +190,13 @@ public class ThemMoiDongPhiVSFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
