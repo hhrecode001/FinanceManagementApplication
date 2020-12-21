@@ -5,6 +5,10 @@
  */
 package views;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.JFrame;
+
 /**
  *
  * @author hoang
@@ -14,8 +18,31 @@ public class TrangChuPanel extends javax.swing.JPanel {
     /**
      * Creates new form TrangChuPanel
      */
-    public TrangChuPanel() {
+    
+    private JFrame parentFrame = null;
+    
+    public TrangChuPanel(JFrame parentFrame) {
         initComponents();
+        this.setBackground(Color.white);
+        this.parentFrame = parentFrame;
+        //dang nhap vao he thong
+        if (!LoginPanel.isLogedIn){
+            jPanel1.removeAll();
+            jPanel1.setLayout(new BorderLayout());
+            jPanel1.add(new LoginPanel(this));
+            jPanel1.validate();
+            jPanel1.repaint();  
+        }
+        else hienThiThongTin();
+
+    }
+    
+    public void hienThiThongTin(){
+            jPanel1.removeAll();
+            jPanel1.setLayout(new BorderLayout());
+            jPanel1.add(new ThongTinPanel(this.parentFrame));
+            jPanel1.validate();
+            jPanel1.repaint();  
     }
 
     /**
@@ -28,29 +55,48 @@ public class TrangChuPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         jLabel1.setText("Trang chủ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 293, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(316, 316, 316)
+                .addGap(331, 331, 331)
                 .addComponent(jLabel1)
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addContainerGap(347, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

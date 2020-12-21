@@ -2,16 +2,13 @@ package quanlythuphidonggop;
 
 import views.MainFrame;
 
-
-/**
- *
- * @author hoang
- */
 public class QuanLyThuPhiDongGop {
 
+    private static MainFrame mainFrame = null;
+            
     public static void main(String[] args) {
-        MainFrame loginUI = new MainFrame();
-        loginUI.setVisible(true); 
+        mainFrame = new MainFrame();
+        mainFrame.setVisible(true); 
     }
     
 }

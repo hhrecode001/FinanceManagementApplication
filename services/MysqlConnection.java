@@ -1,9 +1,10 @@
 package services;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
- * @author Hai
+ * @author dung
  */
 public class MysqlConnection {
     public static Connection getMysqlConnection() throws SQLException, ClassNotFoundException {
@@ -18,7 +19,12 @@ public class MysqlConnection {
         throws SQLException, ClassNotFoundException{
         //Class.forName("com.mysql.jdbc.Driver");
         String connectionUrl = "jdbc:mysql://" + hostName + ":3306/" + dbName + "?useUnicode=true&characterEncoding=utf-8";
-        Connection conn = (Connection)DriverManager.getConnection(connectionUrl, userName, password);
+        Connection conn = null;
+        try{
+            conn = (Connection)DriverManager.getConnection(connectionUrl, userName, password);
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Không kết nối được với hệ thống!");
+        }
         return conn;
     }
 }

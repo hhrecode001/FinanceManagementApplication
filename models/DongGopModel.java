@@ -7,7 +7,7 @@ package models;
 
 /**
  *
- * @author hoang
+ * @author hai
  */
 public class DongGopModel {
     

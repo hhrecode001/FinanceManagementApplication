@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
+ * @author hoang
  */
 public class XoaNamFrame extends javax.swing.JFrame {
 

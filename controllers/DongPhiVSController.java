@@ -27,7 +27,7 @@ import views.XoaNamFrame;
 
 /**
  *
-
+ * @author minh
  */
 public class DongPhiVSController {
     

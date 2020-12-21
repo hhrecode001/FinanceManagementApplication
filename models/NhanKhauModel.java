@@ -13,13 +13,13 @@ import java.util.Date;
  */
 public class NhanKhauModel {
     
-    private int ID_NK;
+    private int iD_NK;
     private String hoTen;
     private Date namSinh;
-    private int ID_HK;
+    private int iD_HK;
     
     public void setID_NK(int ID_NK) {
-        this.ID_NK = ID_NK;
+        this.iD_NK = ID_NK;
     }
 
     public void setHoTen(String hoTen) {
@@ -31,11 +31,11 @@ public class NhanKhauModel {
     }
 
     public void setID_HK(int ID_HK) {
-        this.ID_HK = ID_HK;
+        this.iD_HK = ID_HK;
     }
 
     public int getID_NK() {
-        return ID_NK;
+        return iD_NK;
     }
 
     public String getHoTen() {
@@ -47,7 +47,7 @@ public class NhanKhauModel {
     }
 
     public int getID_HK() {
-        return ID_HK;
+        return iD_HK;
     }
 
 }

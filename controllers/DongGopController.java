@@ -27,7 +27,7 @@ import views.XoaSuKienFrame;
 
 /**
  *
- * @author hoang
+ * @author hai
  */
 public class DongGopController {
     

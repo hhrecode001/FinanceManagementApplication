@@ -5,7 +5,7 @@
 package controllers;
 
 import views.*;
-import Bean.DanhMucBean;
+import models.DanhMucModel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 //import views.HoKhauManagePanel;
 //import views.HomePagePanel;
@@ -28,7 +29,7 @@ public class MainController {
     private JFrame jfrMain;
     private JPanel root;
     private String kindSelected;
-    private List<DanhMucBean> listDanhMuc;
+    private List<DanhMucModel> listDanhMuc;
 
     public MainController(JPanel root, JFrame jfrMain) {
         this.jfrMain = jfrMain;
@@ -41,16 +42,19 @@ public class MainController {
         this.kindSelected = kind;
         jpnItem.setBackground(new Color(0xFFFF00));
         jlbItem.setBackground(new Color(0xFFFF00));
-        JPanel view = new  JPanel();
+        JPanel view = new JPanel();
         switch(kind) {
                 case "TrangChu":
-                    view = new TrangChuPanel();
+                    view = new TrangChuPanel(this.jfrMain);
                     break;
                 case "ThuPhiVS":
                     view = new DongPhiVSPanel(this.jfrMain);
                     break;
                 case "DongGop":
-                    view = new DongGopPanel();
+                    view = new DongGopPanel(this.jfrMain);
+                    break;
+                case "ThongKe":
+                    view = new ThongKePanel(this.jfrMain);
                     break;
                 //any more
                 default:
@@ -61,10 +65,11 @@ public class MainController {
         root.add(view);
         root.validate();
         root.repaint();
+        root.setBackground(Color.white);
     } 
     
     //set animation for menu panel
-    public void setEvent(List<DanhMucBean> listDanhMuc) {
+    public void setEvent(List<DanhMucModel> listDanhMuc) {
         this.listDanhMuc = listDanhMuc;
         this.listDanhMuc.forEach((item) -> {
             item.getJlb().addMouseListener(new LabelEvent(this.jfrMain, item.getKind(), item.getJpn(), item.getJlb()));
@@ -100,28 +105,34 @@ public class MainController {
         }
         
         public void mouseClicked(MouseEvent e) {
-            switch(kind) {
-                case "TrangChu":
-                    view = new TrangChuPanel();
-                    break;
-                case "ThuPhiVS":
-                    view = new DongPhiVSPanel(this.jfrMain);
-                    break;
-                case "DongGop":
-                    view = new DongGopPanel();
-                    break;
-                default:
-                    break;
+            if (LoginPanel.isLogedIn){
+                switch(kind) {
+                    case "TrangChu":
+                        view = new TrangChuPanel(this.jfrMain);
+                        break;
+                    case "ThuPhiVS":
+                        view = new DongPhiVSPanel(this.jfrMain);
+                        break;
+                    case "DongGop":
+                        view = new DongGopPanel(this.jfrMain);
+                        break;
+                    case "ThongKe":
+                        view = new ThongKePanel(this.jfrMain);
+                        break;
+                    default:
+                        break;
+                }
+                root.removeAll();
+                root.setLayout(new BorderLayout());
+                root.add(view);
+                root.validate();
+                root.repaint();
+                root.setBackground(Color.white);
+                setDefaultColor();
+                jlbItem.setBackground(Color.YELLOW);
+                jpnItem.setBackground(Color.YELLOW);
             }
-            
-            root.removeAll();
-            root.setLayout(new BorderLayout());
-            root.add(view);
-            root.validate();
-            root.repaint();
-            setDefaultColor();
-            jlbItem.setBackground(Color.YELLOW);
-            jpnItem.setBackground(Color.YELLOW);
+            else JOptionPane.showMessageDialog(null, "Yêu cầu Log in vào hệ thống!");
         }      
         @Override
         public void mousePressed(MouseEvent e) {

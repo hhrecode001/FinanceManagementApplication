@@ -143,7 +143,8 @@ public class ThemMoiDongGopFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void jButtonXacNhanActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void jButtonXacNhanActionPerformed(java.awt.event.ActionEvent evt) {  
+        try{
         SuKienModel sk = (SuKienModel) jComboBox1.getSelectedItem();
         DongGopModel dongGop = new DongGopModel();
         dongGop.setID_HK(Integer.parseInt(jTextFieldID_HK.getText()));
@@ -152,6 +153,9 @@ public class ThemMoiDongGopFrame extends javax.swing.JFrame {
         controller.editDongGopModel(dongGop);
         jTextFieldID_HK.setText("");
         jTextFieldSo_tien.setText("");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"ID hộ khẩu hoặc số tiền không hợp lệ!");
+        }
     }                                              
 
 
