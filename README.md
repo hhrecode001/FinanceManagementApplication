@@ -1,5 +1,5 @@
 
-1. Tải và cài đặt XAMPP 
+1. Tải và cài đặt XAMPP và JDK bản mới nhất
 2. Mở XAMPP và tải xuống Apache và MySQL 
 3. Start cả Apache và MySQL, sau đó ấn vào Admin ở dòng MySQL (chú ý port của MySQL là 3306) 
 4. Vào link dưới cùng để tải file .sql
