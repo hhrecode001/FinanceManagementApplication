@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package controllers;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -24,13 +23,10 @@ import utility.ClassTableModel;
 import views.ThemMoiDongGopFrame;
 import views.ThemMoiSuKienFrame;
 import views.XoaSuKienFrame;
-
 /**
- *
  * @author hai
  */
 public class DongGopController {
-    
     private JPanel jpnView;
     private List<DongGopModel> listDongGop;
     private ClassTableModel classTableModel = null;
@@ -39,58 +35,47 @@ public class DongGopController {
     private ThemMoiSuKienFrame themMoiSuKien = null;
     private XoaSuKienFrame xoaSuKien = null;
     private ThemMoiDongGopFrame themMoiDongGop = null;
-    
     public DongGopController(JPanel jpnView){  
         this.jpnView = jpnView;
         classTableModel = new ClassTableModel();
         updateListDongGop();
     }
-    
     public DongGopController(){
     }
-    
     public void editDongGopFrame(JFrame prentFrame){
         themMoiDongGop = new ThemMoiDongGopFrame(prentFrame,this);
         themMoiDongGop.setLocationRelativeTo(null);
         themMoiDongGop.setVisible(true);
     }
-    
     public void editDongGopModel(DongGopModel dongGop){
         dongGopService.editDongGop(dongGop);
         updateListDongGop();
     }
-    
     public List<SuKienModel> getListSuKien(){
         return dongGopService.getListSuKien();
     }
-    
     public void deleteSuKienModel(SuKienModel sk){
         dongGopService.deleteSuKien(sk);
         updateListDongGop();
     }
-    
     public void deleteSuKienFrame(JFrame parentFrame){
         xoaSuKien = new XoaSuKienFrame(parentFrame,this);
         xoaSuKien.setLocationRelativeTo(null);
         xoaSuKien.setVisible(true);
     }
-    
     public void addSuKienFrame(JFrame parentFrame){
         themMoiSuKien = new ThemMoiSuKienFrame(parentFrame,this);
         themMoiSuKien.setLocationRelativeTo(null);
         themMoiSuKien.setVisible(true);
     }
-    
     public void addSuKienModel(SuKienModel suKien){
         dongGopService.addSuKien(suKien);
         updateListDongGop();
     }
-    
     public void updateListDongGop(){
         this.listDongGop = this.dongGopService.getListDongGop();
         setDataTable();
     }
-    
     public void setDataTable(){
         List<DongGopModel> listItem = new ArrayList<>();
         this.listDongGop.forEach(DongGop -> {
@@ -129,6 +114,5 @@ public class DongGopController {
         jpnView.add(scroll);
         jpnView.validate();
         jpnView.repaint();
-    }
-    
+    } 
 }
