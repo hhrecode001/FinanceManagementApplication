@@ -7,7 +7,7 @@ package models;
 
 /**
  *
- * @author hoang
+ * @author hai
  */
 public class SuKienModel {
 
@@ -44,7 +44,9 @@ public class SuKienModel {
     }
     
     private String iD_SK;
+    
     private String ten_su_kien;
+    
     private String ngay_to_chuc;
     
 }
