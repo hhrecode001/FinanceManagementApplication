@@ -33,3 +33,8 @@ Mật khẩu mặc định là
 ```
 1
 ```
+
+## File hướng dẫn chi tiết
+```
+https://drive.google.com/file/d/10Lyn-UUSipykmpspflqI5txj2SIVnwiO/view?usp=sharing
+```
